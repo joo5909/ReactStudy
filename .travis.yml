@@ -6,7 +6,3 @@ cache:
   - node_modules
 script:
   - npm run build
-notifications: # 성공 실패 여부 알림 
-  email:
-    recipients:
-      - joo5909@hotmail.com
