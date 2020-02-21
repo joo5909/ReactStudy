@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './Includes/Header';
+import Content from './Contents/Content';
+import StateExapmple from './Contents/StateExapmple';
+import RandomNumber from './Contents/RandomNumber';
+import Footer from './Includes/Footer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+        value: Math.round(Math.random()*100)
+    };
+
+    this.updateValue = this.updateValue.bind(this);
+  }
+
+  updateValue(randomValue){
+      this.setState({
+          value: randomValue
+      });
+  }
+
+
+
+  render(){
+      return  (
+          <div>
+              <Header headerTitle={this.props.headerTitleText}/>
+              <Content contentTitle={this.props.contentTitleText} contentBody={this.props.contentBodyText}/>
+              <StateExapmple />
+              <RandomNumber number={this.state.value} onUpdate={this.updateValue}/>
+              <Footer footerTitle={this.props.footerTitleText}/>              
+          </div>
+      );
+  }
 }
+
+App.defaultProps = {
+  headerTitle: 'Default header',
+  contentTitle: 'Default contentTitle',
+  contentBody: 'Default contentBody'
+};
 
 export default App;
