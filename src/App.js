@@ -1,47 +1,50 @@
 import React from 'react';
+import Customer from './components/Customer';
 import Header from './Includes/Header';
-import Content from './Contents/Content';
-import StateExapmple from './Contents/StateExapmple';
-import RandomNumber from './Contents/RandomNumber';
 import Footer from './Includes/Footer';
+
+const customers =[{
+  'id' : 1,
+  'image': 'http://newsimg.hankookilbo.com/2019/10/18/201910181782714263_1.jpg',
+  'name' : 'Joo',
+  'gender' : '남자',
+  'age' : '33',
+  'job' : '직장인',
+  'birthday' : '880329',
+},
+{
+  'id' : 2,
+  'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtcGfhG4b0yCIMRhrmEk5heqUmohrk85Jpsom5JSLyftltH6_w',
+  'name' : 'Yoon',
+  'gender' : '여자',
+  'age' : '33',
+  'job' : '직장인',
+  'birthday' : '900608',
+}]
+
+const title ={
+  'header' : 'Header',
+  'footer' : 'Footer'
+}
+
 
 class App extends React.Component {
 
-  constructor(props){
-    super(props);
-
-    this.state = {
-        value: Math.round(Math.random()*100)
-    };
-
-    this.updateValue = this.updateValue.bind(this);
-  }
-
-  updateValue(randomValue){
-      this.setState({
-          value: randomValue
-      });
-  }
-
-
-
   render(){
       return  (
-          <div>
-              <Header headerTitle={this.props.headerTitleText}/>
-              <Content contentTitle={this.props.contentTitleText} contentBody={this.props.contentBodyText}/>
-              <StateExapmple />
-              <RandomNumber number={this.state.value} onUpdate={this.updateValue}/>
-              <Footer footerTitle={this.props.footerTitleText}/>              
-          </div>
+        <div>
+          <Header header = {title.header}/>
+
+          {customers.map(c => {
+            return <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} age={c.age} />
+          })}
+      
+          <Footer footer= {title.footer} />
+        </div>
+
       );
   }
 }
 
-App.defaultProps = {
-  headerTitle: 'Default header',
-  contentTitle: 'Default contentTitle',
-  contentBody: 'Default contentBody'
-};
 
 export default App;
