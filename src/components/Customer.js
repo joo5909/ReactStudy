@@ -1,42 +1,27 @@
 import React from 'react';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+
+const mystyle = {
+    width: "100px",
+    height: "100px"
+  };
 
 class Customer extends React.Component {
   render(){
       return (
 
-        <div>
-            <CustomerProfile id={this.props.id} image={this.props.image} name={this.props.name}/>
-            <CustomerInfo birthday={this.props.birthday} gender={this.props.gender} job={this.props.job} job={this.props.age}/>
-        </div>
-        
+            <TableRow>
+                <TableCell>{this.props.id}</TableCell>
+                <TableCell><img src={this.props.image} alt="profile" style={mystyle}/></TableCell>
+                <TableCell>{this.props.name}</TableCell>
+                <TableCell>{this.props.birthday}</TableCell>
+                <TableCell>{this.props.gender}</TableCell>
+                <TableCell>{this.props.age}</TableCell>
+                <TableCell>{this.props.job}</TableCell>
+            </TableRow>
       );
   }
 }
-
-
-class CustomerProfile extends React.Component {
-    render(){
-        return (
-            <div>
-                <img style={{width: "100px"},{height:"100px"}} src={this.props.image} alt="profile"/>
-                <h2>{this.props.name}({this.props.id})</h2>
-            </div>
-        );
-    }
-}
-
-class CustomerInfo extends React.Component {
-    render(){
-        return (
-            <div>     
-                <p>{this.props.gender}</p>
-                <p>{this.props.age}</p>
-                <p>{this.props.job}</p>
-                <p>{this.props.birthday}</p>
-            </div>
-        );
-    }
-}
-
 
 export default Customer;
